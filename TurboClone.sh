@@ -4,12 +4,13 @@
 version='0.0.1'
 art='Splash Screen Coming Soon...'
 
-# Script Splash Screen
-echo 'TurboClone' $version
-echo $art
-sleep 1 
+# Splash Screen
+echo 'TurboClone v' $version
+echo "$art"
+sleep 1
 
-# Define Directory to copy to
+# Define directory to copy to
+# shellcheck disable=SC1091
 source scripts/getPath.sh
 path=$(getPath)
 
