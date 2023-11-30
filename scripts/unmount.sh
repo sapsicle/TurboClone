@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # usage
-# sh mount.sh $drive
+# sh unmount.sh $drive
 # where $drive = /dev/sdXN
 
 # check number of params
 if [ $# != 1 ]; then
-    echo "wrong number of params! Usage: sh mount.sh drive_path"
+    echo "wrong number of params! Usage: sh unmount.sh drive_path"
     exit 1
 fi
 
@@ -34,17 +34,7 @@ if [ "$devMatch" = false ]; then
 fi
 
 
-# not ../drive as it creates from working dir, root of project not location of script
-mountPath="drive/"
-
-# Check if directory exists
-if [ ! -e "$mountPath" ]; then
-    # create default mount path if not
-    echo "making mount path"
-    mkdir "$mountPath"
-fi
-
-# mount drive
-sudo mount "$1" "$mountPath"
-# change perms to be able to read only
-sudo chmod 444 "$mountPath"
+# unmount drive
+sudo umount "$1"
+# change folder perms back to full
+sudo chmod 777 "drive/"
