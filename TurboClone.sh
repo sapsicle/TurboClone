@@ -1,15 +1,18 @@
 #!/bin/bash
 
-# Customer service
-echo 'Welcome to TurboClone!'
-sleep 0.5
-echo 'The multi-drive copy tool'
+# Version information
+version='0.0.1'
+art='Splash Screen Coming Soon...'
+
+# Splash Screen
+echo 'TurboClone v' $version
+echo "$art"
 sleep 1
 
-# Call path script to get copy location
-# shellcheck source=scripts/getPath.sh
+# Define directory to copy to
+# shellcheck disable=SC1091
 source scripts/getPath.sh
-path=$(get_path)
+path=$(getPath)
 
-# proof of concept, returned value from getPath
+# Proof of Concept, returns getPath
 echo "$path"

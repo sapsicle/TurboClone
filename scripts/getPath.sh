@@ -1,28 +1,46 @@
 #!/bin/bash
 
-get_path() {
-    # initialize with empty path
-    file_path=""
-    # read input path for saving
-    read -e -p "Please enter the path you'd like to save your files to (leave empty for default): " file_path
+getPath() {
+    # Initialize empy path for directory
+    dirPath=''
 
-    # check for null input to default path to archive/
-    if [ "$file_path" == "" ]; then
-        echo "defaulting path"
-        # check if dir exists yet
-        if [ ! -e "archive" ]; then
+    # User input for directory
+    # echo 'Enter directory to be copied to (Default: archive/): '
+    read -r -p 'Enter directory to be copied to (Default: archive/): ' dirPath
+
+    # If dirPath is empty, set directory to archive/
+    if [[ -z "$dirPath" ]]; then 
+        echo 'Using default directory (archive/)'
+        # If archive/ doesn't exist, create it
+        if [[ ! -e archive/ ]]; then
             mkdir archive/
         fi
-        # set path to default archive path
-        file_path="archive"
+        # Set path to default
+        dirPath='archive/'
     fi
 
-    # check that input path both exists and is a directory (not a file)
-    if [ -e "$file_path" ] && [ -d "$file_path" ]; then
-        echo "Path exists and is dir"
+    # Check if directory exists
+    if [ -e "$dirPath" ] && [ -d "$dirPath" ]; then
+        echo 'Copying to ' "$dirPath"
+    # If it doesn't, make new one or use default
     else
-        echo "Path does not exist or is not dir"
+        echo -n 'Directory does not exist! Create new directory? (y/n) '
+        read -r -n 1 check
+        # Makes new directory
+        if [[ "$check" == 'y' ]]; then
+            mkdir "$dirPath"
+        # Uses default directory
+        else 
+            echo 'Using default directory (archive/)'
+            # If archive/ doesn't exist, create it
+            if [[ ! -e archive ]]; then
+                mkdir archive/
+            fi
+            # Set path to default
+            dirPath='archive/'
+        fi
     fi
 
-    echo "$file_path"
+    # Return Directory
+    echo "$dirPath"
 }
