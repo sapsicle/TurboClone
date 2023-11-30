@@ -5,8 +5,8 @@
 # where $drive = /dev/sdXN
 
 # check number of params
-if [ $# != 1 ]; then
-    echo "wrong number of params! Usage: sh unmount.sh drive_path"
+if [[ $# != 1 ]]; then
+    echo "Wrong number of params! Usage: sh unmount.sh drive_path"
     exit 1
 fi
 
@@ -20,14 +20,13 @@ patterns=("/dev/($alphanumPrefixes)[a-z][1-9][0-9]?" "/dev/($numPrefixes)[0-9][0
 devMatch=false
 
 for pattern in "${patterns[@]}"; do
-    # shellcheck disable=SC2076
     if [[ "$1" =~ $pattern ]]; then
         devMatch=true
         break
     fi
 done
 
-if [ "$devMatch" = false ]; then
+if [[ "$devMatch" = false ]]; then
     exit 1
 fi
 

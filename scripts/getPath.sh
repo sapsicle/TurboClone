@@ -27,7 +27,7 @@ getPath() {
         echo -n 'Directory does not exist! Create new directory? (y/n) '
         read -r -n 1 check
         # Makes new directory
-        if [ "$check" == 'y' ]; then
+        if [[ "$check" == 'y' ]]; then
             mkdir "$dirPath"
         # Uses default directory
         else 
