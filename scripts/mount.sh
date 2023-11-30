@@ -23,13 +23,11 @@ for pattern in "${patterns[@]}"; do
     # shellcheck disable=SC2076
     if [[ "$1" =~ $pattern ]]; then
         devMatch=true
-        echo "drive match"
         break
     fi
 done
 
 if [ "$devMatch" = false ]; then
-    echo "drive match fail"
     exit 1
 fi
 
@@ -40,7 +38,6 @@ mountPath="drive/"
 # Check if directory exists
 if [ ! -e "$mountPath" ]; then
     # create default mount path if not
-    echo "making mount path"
     mkdir "$mountPath"
 fi
 
