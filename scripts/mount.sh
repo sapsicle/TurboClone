@@ -42,5 +42,5 @@ fi
 
 # mount drive
 sudo mount "$1" "$mountPath"
-# change perms to be able to read only
+# change perms to be able to read only for safety
 sudo chmod 444 "$mountPath"
