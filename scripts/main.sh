@@ -11,7 +11,7 @@ sleep 1
 
 # Define directory to copy to
 # shellcheck disable=SC1091
-source scripts/getPath.sh
+source getPath.sh
 path=$(getPath)
 
 # Proof of Concept, returns getPath

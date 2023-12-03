@@ -2,7 +2,7 @@
 
 # usage
 # sh mount.sh $drive
-# where $drive = /dev/sdXN
+# where $drive = sdXN, etc.
 
 # check number of params
 if [[ $# != 1 ]]; then
@@ -10,17 +10,20 @@ if [[ $# != 1 ]]; then
     exit 1
 fi
 
+# turn drive name into actual drive path
+drivePath="/dev/$1"
+
 # listing known drive name styles as a pattern
 alphanumPrefixes="sd|hd|vd"
 numPrefixes="lp|fd|parport|ZIP"
-patterns=("/dev/($alphanumPrefixes)[a-z][1-9][0-9]?" "/dev/($numPrefixes)[0-9][0-9]?" "/dev/nvme[0-9]n[1-9][0-9]?")
+patterns=("/dev/($alphanumPrefixes)[a-z]*[0-9]*" "/dev/($numPrefixes)[0-9]*" "/dev/nvme[0-9]*n[0-9]*")
 
 
 # match input drive dir with list of known naming style patterns
 devMatch=false
 
 for pattern in "${patterns[@]}"; do
-    if [[ "$1" =~ $pattern ]]; then
+    if [[ "$drivePath" =~ $pattern ]]; then
         devMatch=true
         break
     fi
@@ -41,6 +44,6 @@ if [[ ! -e "$mountPath" ]]; then
 fi
 
 # mount drive
-sudo mount "$1" "$mountPath"
+sudo mount "$drivePath" "$mountPath"
 # change perms to be able to read only for safety
 sudo chmod 444 "$mountPath"

@@ -1,5 +1,5 @@
 # TurboClone
-## A simple for bulk device archiving
+## A simple tool for bulk device archiving
 Currently supports Linux x86 only
 
 ### About
