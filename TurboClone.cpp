@@ -14,7 +14,8 @@ int main(int argc, char *argv[])
     // cout << version << endl;
     // cout << art << endl;
 
-    getPath();
+    // pull target dir after flag perhaps, -d?
+    getPath(/* fill with call arg for dir */);
 
 
     return 0;

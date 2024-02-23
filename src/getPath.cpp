@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../headers/getPath.hpp"
 
 #include <filesystem>
@@ -7,23 +9,21 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-string getPath()
+fs::path getPath()
 {
     // if not specified, call with default directory
     cout << "No path specified, defaulting to ~/Documents/archive/" << endl;
     string user = getlogin();
-    fs::path defaultDir = fs::path("/home") / user / "Documents/archive/";
+    string homeDir = getenv("HOME");
+    fs::path defaultDir = fs::path(homeDir) / "Documents/archive/";
+    cout << homeDir << endl;
     cout << defaultDir << endl;
 
-    string homeDir = getenv("HOME");
-    cout << homeDir << endl;
-    // if ()
     // return getPath();
     return "exit";
 }
 
-string getPath(fs::path directory)
+fs::path getPath(string directory)
 {
-    
-    return "";
+    return fs::path(directory);
 }

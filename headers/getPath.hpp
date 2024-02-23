@@ -1,5 +1,4 @@
-#ifndef PATH
-#define PATH
+#pragma once
 
 #include <filesystem>
 
@@ -8,8 +7,5 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-string getPath();
-
-string getPath(fs::path directory);
-
-#endif
+fs::path getPath();
+fs::path getPath(string directory);
