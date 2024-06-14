@@ -1,5 +1,7 @@
-# TurboClone
-## A simple for bulk device archiving
+# This repo is __DEPRECATED__
+Find the maintained version [on GitLab](https://gitlab.com/sapsicle/TurboClone)
+
+# TurboClone, a simple for bulk device archiving
 Currently supports Linux x86 only
 
 ### About
